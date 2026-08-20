@@ -8,7 +8,11 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 st.set_page_config(page_title="AI Stock Portfolio Dashboard", layout="wide")
-APP_DIR = "/content/app_data"
+import os
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(APP_DIR, "data", "processed")
+MODEL_DIR = os.path.join(APP_DIR, "models")
+RESULTS_DIR = os.path.join(APP_DIR, "results")
 
 # ===== Color palette (đồng bộ toàn app) =====
 COLORS = {
@@ -134,16 +138,16 @@ st.markdown("""
 # ===== Load dữ liệu =====
 @st.cache_data
 def load_data():
-    price_history = pd.read_csv(f"{APP_DIR}/price_history.csv", parse_dates=["Date"])
-    latest_features = pd.read_csv(f"{APP_DIR}/latest_features.csv", parse_dates=["Date"])
-    with open(f"{APP_DIR}/feature_cols.json") as f:
+    price_history = pd.read_csv(os.path.join(DATA_DIR, "panel_clean_features.csv"), parse_dates=["Date"])
+    latest_features = pd.read_csv(os.path.join(DATA_DIR, "latest_features.csv"), parse_dates=["Date"])
+    with open(os.path.join(MODEL_DIR, "feature_cols.json")) as f:
         feature_cols = json.load(f)
-    ablation_df = pd.read_csv(f"{APP_DIR}/phase11_ablation_study.csv")
+    ablation_df = pd.read_csv(os.path.join(RESULTS_DIR, "phase11_ablation_study.csv"))
     return price_history, latest_features, feature_cols, ablation_df
 
 @st.cache_resource
 def load_model():
-    return joblib.load(f"{APP_DIR}/xgb_model.pkl"), joblib.load(f"{APP_DIR}/feature_scaler_final.pkl")
+    return joblib.load(os.path.join(MODEL_DIR, "xgb_model.pkl")), joblib.load(os.path.join(MODEL_DIR, "feature_scaler.pkl"))
 
 @st.cache_data
 def load_returns():
@@ -153,7 +157,7 @@ def load_returns():
         "XGBoost": "xgb_returns.csv", "LSTM": "lstm_returns.csv",
         "Proposed (VolWeight)": "proposed_strategy_test_returns.csv",
     }
-    return {name: pd.read_csv(f"{APP_DIR}/{fname}", index_col=0, parse_dates=True).iloc[:, 0] for name, fname in names.items()}
+    return {name: pd.read_csv(os.path.join(RESULTS_DIR, fname), index_col=0, parse_dates=True).iloc[:, 0] for name, fname in names.items()}
 
 def compute_metrics(returns, freq=252, rf_rate=0.0):
     total_return = (1 + returns).prod() - 1
