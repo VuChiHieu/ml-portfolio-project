@@ -2,6 +2,11 @@
 
 Ung dung Machine Learning trong du bao loi suat co phieu va xay dung danh muc dau tu toi uu — Nghien cuu tren nhom co phieu von hoa lon thuoc S&P 500.
 
+
+## Demo truc tuyen
+
+**App: [https://ml-portfolio-project-kkw3crj8yztvlqdvrcg9sj.streamlit.app/](https://ml-portfolio-project-kkw3crj8yztvlqdvrcg9sj.streamlit.app/)**
+
 ## Muc tieu
 
 Xay dung he thong su dung du lieu lich su cua 25 co phieu large-cap S&P 500 de:
