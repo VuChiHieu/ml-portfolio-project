@@ -1,0 +1,8 @@
+,Buy & Hold,Equal Weight,Linear Regression,Random Forest,"XGBoost (Top5,Equal)",LSTM,"Proposed (Top5,VolWeight)"
+Total Return (%),87.88,82.8,80.26,61.27,90.09,90.73,51.33
+CAGR (%),14.81,14.12,13.77,11.03,15.1,15.18,9.49
+Annualized Volatility (%),13.82,13.8,21.7,21.23,20.9,21.72,20.06
+Sharpe Ratio,1.068,1.026,0.702,0.599,0.777,0.759,0.553
+Max Drawdown (%),-18.92,-19.92,-21.21,-21.32,-19.87,-20.31,-26.03
+Win Rate (%),54.56,53.69,52.91,52.65,52.91,51.0,54.04
+Calmar Ratio,0.782,0.709,0.649,0.517,0.76,0.748,0.365

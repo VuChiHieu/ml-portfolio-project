@@ -1,0 +1,4 @@
+Experiment,N_features,IC_test,RMSE_test,Total Return (%),CAGR (%),Annualized Volatility (%),Sharpe Ratio,Max Drawdown (%),Win Rate (%),Calmar Ratio
+Exp A (Price/Return only),5,0.0134,0.04137,58.82,10.66,21.13,0.584,-22.35,53.08,0.477
+Exp B (A + Technical),15,0.0145,0.04141,78.26,13.49,20.71,0.714,-19.21,53.08,0.702
+"Exp C (B + Volume, full)",17,0.0135,0.0414,90.09,15.1,20.9,0.777,-19.87,52.91,0.76
